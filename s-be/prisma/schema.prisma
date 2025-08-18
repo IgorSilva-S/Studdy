@@ -16,36 +16,36 @@ datasource db {
 model User {
   id         Int       @id @default(autoincrement())
   name       String    @db.VarChar(100)
-  email      String    @db.VarChar(100)
+  email      String    @unique @db.VarChar(100)
   password   String    @db.VarChar(100)
   isDeleted  Boolean
-  lastEdited DateTime
-  created    DateTime
+  lastEdited DateTime  @updatedAt @db.Timestamp(3)
+  created    DateTime  @default(now()) @db.Timestamp(3)
   timers     Timers[]
   markers    Markers[]
   notes      Notes[]
 }
 
 model Timers {
-  id      Int   @id @default(autoincrement())
+  id      Int      @id @default(autoincrement())
   timer   DateTime @db.Time
   User_id Int
-  user    User @relation(fields: [User_id], references: [id])
+  user    User     @relation(fields: [User_id], references: [id])
 }
 
 model Markers {
-  id        Int    @id @default(autoincrement())
-  marker    String @db.VarChar(100)
+  id        Int     @id @default(autoincrement())
+  marker    String  @db.VarChar(100)
   isDeleted Boolean
   User_id   Int
-  user      User @relation(fields: [User_id], references: [id])
+  user      User    @relation(fields: [User_id], references: [id])
 }
 
 model Notes {
-  id        Int    @id @default(autoincrement())
-  notename  String @db.VarChar(45)
-  note      String @db.LongText
+  id        Int     @id @default(autoincrement())
+  notename  String  @db.VarChar(45)
+  note      String  @db.LongText
   isDeleted Boolean
   User_id   Int
-  user      User @relation(fields: [User_id], references: [id])
+  user      User    @relation(fields: [User_id], references: [id])
 }

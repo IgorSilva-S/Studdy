@@ -10,7 +10,6 @@ const prisma = new PrismaClient();
 
 // Creating user
 router.post('/neue', async (req, res) => {
-  try {
     const { name, email, password } = neueSchema.parse(req.body);
 
     // Checking existance
@@ -34,13 +33,10 @@ router.post('/neue', async (req, res) => {
     delete neue.password
 
     res.status(200).json({ message: "Usuário criado com sucesso", user: neue })
-  } catch (err) {
-    res.status(400).json({ message: err})
-  }
 })
 
 /* GET users listing. */
-router.get('/a', function (req, res, next) {
+router.get('/', function (req, res, next) {
   res.send('respond with a resource');
 });
 
