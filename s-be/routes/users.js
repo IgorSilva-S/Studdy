@@ -6,7 +6,6 @@ const { authenticateToken } = require('../middlewares/jwt')
 const { neueSchema, upUserSchema, loginSchema } = require('../schemas/users')
 
 const { PrismaClient } = require("@prisma/client");
-const { number } = require('zod');
 const prisma = new PrismaClient();
 
 // Creating user
@@ -186,10 +185,5 @@ router.delete('/devkeys/undelete/:id', async (req, res) => {
     return res.status(400).json({ message: err })
   }
 })
-
-/* GET users listing. */
-router.get('/', function (req, res, next) {
-  res.send('respond with a resource');
-});
 
 module.exports = router;
