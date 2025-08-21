@@ -7,11 +7,12 @@ const cors = require('cors')
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
-const notesRouter = require('./routes/notes')
+const notesRouter = require('./routes/notes');
+const todoRouter = require('./routes/todo');
 
 const app = express();
-app.use(cors())
-app.use(express.json())
+app.use(cors());
+app.use(express.json());
 
 
 app.use(logger('dev'));
@@ -22,6 +23,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/api/users', usersRouter);
-app.use('/api/notes', notesRouter)
+app.use('/api/notes', notesRouter);
+app.use('/api/todo', todoRouter)
 
 module.exports = app;

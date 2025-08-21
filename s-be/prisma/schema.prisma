@@ -28,6 +28,7 @@ model User {
 model Markers {
   id        Int     @id @default(autoincrement())
   marker    String  @db.VarChar(100)
+  isMarked  Boolean
   isDeleted Boolean
   User_id   Int
   user      User    @relation(fields: [User_id], references: [id])
