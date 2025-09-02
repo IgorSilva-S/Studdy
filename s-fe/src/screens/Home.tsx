@@ -22,17 +22,17 @@ export default function Home() {
 
       <View style={styles.buttons}>
         <TouchableOpacity style={styles.button}>
-          <Feather name="clock" size={24} color="#3c5a6b" />
-          <Text style={styles.buttonText}> Cronômetro</Text>
+          <Feather name="clock" size={24} color="#7fabc6" />
+          <Text style={styles.buttonText}>Temporizador</Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.button}>
-          <FontAwesome name="check" size={24} color="#3c5a6b" />
+          <FontAwesome name="check" size={24} color="#7fabc6" />
           <Text style={styles.buttonText}> Listas</Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.button}>
-          <Ionicons name="document" size={24} color="#3c5a6b" />
+          <Ionicons name="document" size={24} color="#7fabc6" />
           <Text style={styles.buttonText}> Notas</Text>
         </TouchableOpacity>
       </View>
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
   },
   menu: {
     fontSize: 28,
-    color: "#3c5a6b",
+    color: "#7fabc6",
   },
   logo: {
     width: 380,
@@ -77,12 +77,12 @@ const styles = StyleSheet.create({
     height: 300,
     resizeMode: "contain",
     marginVertical: 10,
-    marginTop: 40,
+    marginTop: 35,
   },
   subtitle: {
-    fontSize: 18,
+    fontSize: 30,
     textAlign: "center",
-    color: "#3c5a6b",
+    color: "#7fabc6",
     marginBottom: 20,
     marginTop: 30,
   },
@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 18,
-    color: '#3c5a6b',
+    color: '#7fabc6',
     marginLeft: 10,          
   }  
 });

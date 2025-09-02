@@ -15,10 +15,9 @@ export default function Perfil() {
       />
 
       {/* Título */}
-      <Text style={styles.title}>Faça Login para salvar suas informações!</Text>
       <Image
         source={require("../../assets/img/user.png")}
-        style={{ width: 200, height: 200, marginBottom: 30 }}
+        style={{ width: 200, height: 200, marginBottom: 50 }}
         resizeMode="contain"
       />
 
@@ -40,13 +39,7 @@ export default function Perfil() {
 
       {/* Botão salvar */}
       <TouchableOpacity style={styles.button}>
-        <Text style={styles.buttonText}>Entrar</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity style={{ marginTop: 15 }}>
-        <Text style={{ textDecorationLine: 'underline', color: '#7fabc6', fontSize: 16 }}>
-          Não tem Conta? Cadastre-se!
-        </Text>
+        <Text style={styles.buttonText}>Editar</Text>
       </TouchableOpacity>
 
       {/* Barra inferior */}
@@ -71,7 +64,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#deecf5",
     alignItems: "center",
     justifyContent: "flex-start",
-    paddingTop: 40,
+    paddingTop: 60,
     paddingHorizontal: 20,
   },
   logo: {
@@ -87,9 +80,8 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 22,
     fontWeight: "bold",
-    color: "#7fabc6",
+    color: "#4A7CA5",
     marginBottom: 30,
-    textAlign: "center",
   },
   inputContainer: {
     flexDirection: "row",
@@ -114,7 +106,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#7fabc6",
     paddingVertical: 14,
     borderRadius: 12,
-    marginTop: 10,
+    marginTop: 20,
     width: "100%",
     alignItems: "center",
   },
@@ -151,5 +143,5 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: '#7fabc6',
     marginLeft: 10,          
-  },
+  } 
 });

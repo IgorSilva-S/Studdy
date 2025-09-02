@@ -15,45 +15,45 @@ const Drawer = createDrawerNavigator();
 function DrawRoutes() {
   return (
     <Drawer.Navigator
-    screenOptions={({ navigation }) => ({
-      drawerType: "back",
-      drawerStyle: {
-        backgroundColor: "#7fabc6", 
-      },
-      swipeEdgeWidth: 80,
-      drawerActiveTintColor: "#f0f8ff",
-      drawerLabelStyle: {
-        color: "#7fabc6",
-        fontSize: 18,
-        fontWeight: "600",
-      },
-      headerStyle: {
-        backgroundColor: "#deecf5",
-        elevation: 0,
-      },
-      headerLeft: () => (
-        <TouchableOpacity
-          onPress={() => navigation.toggleDrawer()}
-          style={{
-            marginLeft: 15,
-            backgroundColor: "transparent", 
-            borderRadius: 50,
-            zIndex: 999, 
-          }}
-        >
-          <Feather name="menu" size={40} color="#7fabc6" />
-        </TouchableOpacity>
-      ),
-    })}
-  >  
+      screenOptions={({ navigation }) => ({
+        drawerType: "back",
+        drawerStyle: {
+          backgroundColor: "#7fabc6",
+        },
+        swipeEdgeWidth: 80,
+        drawerActiveTintColor: "#f0f8ff",
+        drawerLabelStyle: {
+          color: "white",
+          fontSize: 18,
+          fontWeight: "600",
+        },
+        headerStyle: {
+          backgroundColor: "#deecf5",
+          elevation: 0,
+        },
+        headerLeft: () => (
+          <TouchableOpacity
+            onPress={() => navigation.toggleDrawer()}
+            style={{
+              marginLeft: 15,
+              backgroundColor: "transparent",
+              borderRadius: 50,
+              zIndex: 999,
+            }}
+          >
+            <Feather name="menu" size={40} color="#7fabc6" />
+          </TouchableOpacity>
+        ),
+      })}
+    >
       <Drawer.Screen
         name="home"
         component={Home}
         options={{
           drawerLabel: "Início",
           title: "",
-          drawerIcon: ({ color }) => (
-            <Feather name="home" color={color} size={28} />
+          drawerIcon: () => (
+            <Feather name="home" color="white" size={28} />
           ),
         }}
       />
@@ -63,8 +63,8 @@ function DrawRoutes() {
         options={{
           drawerLabel: "Conta",
           title: "",
-          drawerIcon: ({ color }) => (
-            <Feather name="user" color={color} size={28} />
+          drawerIcon: () => (
+            <Feather name="user" color="white" size={28} />
           ),
         }}
       />
@@ -74,8 +74,8 @@ function DrawRoutes() {
         options={{
           drawerLabel: "Afazeres",
           title: "",
-          drawerIcon: ({ color }) => (
-            <Feather name="check-circle" color={color} size={28} />
+          drawerIcon: () => (
+            <Feather name="check-circle" color="white" size={28} />
           ),
         }}
       />
@@ -85,8 +85,8 @@ function DrawRoutes() {
         options={{
           drawerLabel: "Anotações",
           title: "",
-          drawerIcon: ({ color }) => (
-            <FontAwesome name="sticky-note-o" color={color} size={28} />
+          drawerIcon: () => (
+            <FontAwesome name="sticky-note-o" color="white" size={28} />
           ),
         }}
       />
@@ -96,8 +96,8 @@ function DrawRoutes() {
         options={{
           drawerLabel: "Temporizador",
           title: "",
-          drawerIcon: ({ color }) => (
-            <Ionicons name="timer-outline" color={color} size={28} />
+          drawerIcon: () => (
+            <Ionicons name="timer-outline" color="white" size={28} />
           ),
         }}
       />
