@@ -10,6 +10,10 @@ import Notes from "../screens/Notes";
 import Todo from "../screens/Todo";
 import Timer from "../screens/Timer";
 
+// Dev
+import Cad from "../screens/AccountCadastro";
+import Edit from "../screens/AccountEdit"
+
 const Drawer = createDrawerNavigator();
 
 function DrawRoutes() {
@@ -98,6 +102,28 @@ function DrawRoutes() {
           title: "",
           drawerIcon: () => (
             <Ionicons name="timer-outline" color="white" size={28} />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="DevEdit"
+        component={Edit}
+        options={{
+          drawerLabel: "Editar conta",
+          title: "",
+          drawerIcon: () => (
+            <FontAwesome name="code" color="white" size={28} />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="DevCad"
+        component={Cad}
+        options={{
+          drawerLabel: "Cadastro",
+          title: "",
+          drawerIcon: () => (
+            <FontAwesome name="code" color="white" size={28} />
           ),
         }}
       />
