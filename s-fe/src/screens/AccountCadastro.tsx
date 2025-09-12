@@ -3,13 +3,49 @@ import 'react-native-gesture-handler';
 import React from "react";
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image } from "react-native";
 import { Feather, FontAwesome, Ionicons } from "@expo/vector-icons";
+import { useState } from 'react';
 
 export default function Perfil() {
+
+  const [form, setForm] = useState({
+    name: '',
+    email: '',
+    password: ''
+  })
+
+  const sendNewUser = async () => {
+    try {
+      const res = await fetch('http://localhost:3000/api/users/neue', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          password: form.password
+        })
+      })
+
+      if (res.ok) {
+        console.log('Usuário cadastrado com sucesso')
+      }
+
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  const handleChange = (name: string, value: string) => {
+    setForm((prev) => ({ ...prev, [name]: value }))
+  }
+
+
   return (
     <View style={styles.container}>
       {/* Logo */}
       <Image
-        source={require("../../assets/img/logo.png")} 
+        source={require("../../assets/img/logo.png")}
         style={styles.logo}
         resizeMode="contain"
       />
@@ -23,22 +59,23 @@ export default function Perfil() {
 
       <View style={styles.inputContainer}>
         <Feather name="user" size={20} color="#7fabc6" style={styles.icon} />
-        <TextInput placeholder="Nome:" placeholderTextColor="#7fabc6" style={styles.input} />
+        <TextInput placeholder="Nome:" placeholderTextColor="#7fabc6" style={styles.input} onChangeText={(text) => handleChange('name', text)} />
       </View>
 
       <View style={styles.inputContainer}>
         <Feather name="mail" size={20} color="#7fabc6" style={styles.icon} />
-        <TextInput placeholder="Email:" placeholderTextColor="#7fabc6" style={styles.input} />
+        <TextInput placeholder="Email:" placeholderTextColor="#7fabc6" style={styles.input} onChangeText={(text) => handleChange('email', text)} />
       </View>
 
       <View style={styles.inputContainer}>
-          <Ionicons name="document" size={24} color="#7fabc6" />
-        <TextInput placeholder="Senha:" placeholderTextColor="#7fabc6" secureTextEntry style={styles.input}
+        <Ionicons name="document" size={24} color="#7fabc6" />
+        <TextInput placeholder="Senha:" placeholderTextColor="#7fabc6" secureTextEntry style={styles.input} onChangeText={(text) => handleChange('password', text)}
+
         />
       </View>
 
       {/* Botão salvar */}
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity style={styles.button} onPress={sendNewUser}>
         <Text style={styles.buttonText}>Salvar</Text>
       </TouchableOpacity>
 
@@ -100,7 +137,7 @@ const styles = StyleSheet.create({
   input: {
     flex: 1,
     fontSize: 16,
-    color:"#7fabc6",
+    color: "#7fabc6",
   },
   button: {
     backgroundColor: "#7fabc6",
@@ -131,7 +168,7 @@ const styles = StyleSheet.create({
   },
   buttonNav: {
     flexDirection: 'row',
-    alignItems: 'center',  
+    alignItems: 'center',
     backgroundColor: '#deecf5',
     borderWidth: 2,
     borderColor: '#8bb6cf',
@@ -142,6 +179,6 @@ const styles = StyleSheet.create({
   buttonNavText: {
     fontSize: 18,
     color: '#7fabc6',
-    marginLeft: 10,          
-  } 
+    marginLeft: 10,
+  }
 });

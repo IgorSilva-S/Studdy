@@ -51,6 +51,8 @@ router.get('/login', async (req, res) => {
 
       const tkn = generateToken({ id: user.id, email: user.email, name: user.name})
 
+      delete user.password
+
       return res.status(200).json({ message: `Welcome User ${user.name}`, data: user, token: tkn})
     } else {
       return res.status(401).json({ messgae: 'email ou senha não encontrados' })
