@@ -9,6 +9,7 @@ import Account from "../screens/Account";
 import Notes from "../screens/Notes";
 import Todo from "../screens/Todo";
 import Timer from "../screens/Timer";
+import AccountLoading from "../screens/AccountLoading";
 
 // Dev
 import Cad from "../screens/AccountCadastro";
@@ -63,7 +64,7 @@ function DrawRoutes() {
       />
       <Drawer.Screen
         name="account"
-        component={Account}
+        component={AccountLoading}
         options={{
           drawerLabel: "Conta",
           title: "",
@@ -106,7 +107,7 @@ function DrawRoutes() {
         }}
       />
       <Drawer.Screen
-        name="DevEdit"
+        name="Edit"
         component={Edit}
         options={{
           drawerLabel: "Editar conta",
@@ -114,10 +115,11 @@ function DrawRoutes() {
           drawerIcon: () => (
             <FontAwesome name="code" color="white" size={28} />
           ),
+          drawerItemStyle: { display: "none" }
         }}
       />
       <Drawer.Screen
-        name="DevCad"
+        name="Register"
         component={Cad}
         options={{
           drawerLabel: "Cadastro",
@@ -125,6 +127,19 @@ function DrawRoutes() {
           drawerIcon: () => (
             <FontAwesome name="code" color="white" size={28} />
           ),
+          drawerItemStyle: { display: "none" }
+        }}
+      />
+      <Drawer.Screen
+        name="Login"
+        component={Account}
+        options={{
+          drawerLabel: "Login",
+          title: "",
+          drawerIcon: () => (
+            <FontAwesome name="code" color="white" size={28} />
+          ),
+          drawerItemStyle: { display: "none" }
         }}
       />
     </Drawer.Navigator>

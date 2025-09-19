@@ -15,7 +15,7 @@ export default function Perfil() {
 
   const sendNewUser = async () => {
     try {
-      const res = await fetch('http://localhost:3000/api/users/neue', {
+      const res = await fetch('http://10.0.2.2:3000/api/users/neue', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
