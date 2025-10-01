@@ -3,13 +3,81 @@ import 'react-native-gesture-handler';
 import React from "react";
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image } from "react-native";
 import { Feather, FontAwesome, Ionicons } from "@expo/vector-icons";
+import { useState } from 'react';
 
-export default function Perfil() {
+export default function Perfil({ navigation }: any) {
+
+  const [data, setData] = useState({
+    email: '',
+    password: ''
+  })
+
+  const [error, setError] = useState('')
+
+  const handleChange = (name: string, value: string) => {
+    setData((prev) => ({ ...prev, [name]: value }))
+  }
+
+  const starthandle = () => {
+    let eLength: number = data.email.length
+    let pLength: number = data.password.length
+    if (eLength < 9) {
+      if (eLength == 0) {
+        console.log('Insira um dado no email')
+        setError('Insira algo no campo email')
+        return
+      }
+      console.log('Mínimo de letras - email')
+      setError('Mínimo de letras não aceito no campo email')
+      return
+    }
+    if (pLength < 7) {
+      if (pLength == 0) {
+        console.log('Insira um dado na senha')
+        setError('Insira algo no campo senha')
+        return
+      }
+      console.log('Mínimo de letras - senha')
+      setError('Mínimo de letras não aceito no campo senha')
+      return
+    }
+
+    loginUser()
+  }
+
+  const loginUser = async () => {
+    try {
+      const res = await fetch('http://10.0.2.2:3000/api/users/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          email: data.email,
+          password: data.password
+        })
+      })
+
+      const json = await res.json()
+
+      if (res.ok) {
+        console.log('Usuário logado com sucesso')
+        navigation.navigate('home')
+      } else {
+        console.log('Erro na requisição:', json.message)
+        setError(json.message)
+      }
+
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
   return (
     <View style={styles.container}>
       {/* Logo */}
       <Image
-        source={require("../../assets/img/logo.png")} 
+        source={require("../../assets/img/logo.png")}
         style={styles.logo}
         resizeMode="contain"
       />
@@ -23,27 +91,22 @@ export default function Perfil() {
       />
 
       <View style={styles.inputContainer}>
-        <Feather name="user" size={20} color="#7fabc6" style={styles.icon} />
-        <TextInput placeholder="Nome:" placeholderTextColor="#7fabc6" style={styles.input} />
-      </View>
-
-      <View style={styles.inputContainer}>
         <Feather name="mail" size={20} color="#7fabc6" style={styles.icon} />
-        <TextInput placeholder="Email:" placeholderTextColor="#7fabc6" style={styles.input} />
+        <TextInput placeholder="Email:" placeholderTextColor="#7fabc6" style={styles.input} onChangeText={(text) => handleChange('email', text)} />
       </View>
 
       <View style={styles.inputContainer}>
-          <Ionicons name="document" size={24} color="#7fabc6" />
-        <TextInput placeholder="Senha:" placeholderTextColor="#7fabc6" secureTextEntry style={styles.input}
+        <Ionicons name="key-outline" size={24} color="#7fabc6" />
+        <TextInput placeholder="Senha:" placeholderTextColor="#7fabc6" secureTextEntry style={styles.input} onChangeText={(text) => handleChange('password', text)}
         />
       </View>
 
       {/* Botão salvar */}
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity style={styles.button} onPress={starthandle}>
         <Text style={styles.buttonText}>Entrar</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={{ marginTop: 15 }}>
+      <TouchableOpacity style={{ marginTop: 15 }} onPress={() => navigation.navigate('Register')}>
         <Text style={{ textDecorationLine: 'underline', color: '#7fabc6', fontSize: 16 }}>
           Não tem Conta? Cadastre-se!
         </Text>
@@ -108,7 +171,7 @@ const styles = StyleSheet.create({
   input: {
     flex: 1,
     fontSize: 16,
-    color:"#7fabc6",
+    color: "#7fabc6",
   },
   button: {
     backgroundColor: "#7fabc6",
@@ -139,7 +202,7 @@ const styles = StyleSheet.create({
   },
   buttonNav: {
     flexDirection: 'row',
-    alignItems: 'center',  
+    alignItems: 'center',
     backgroundColor: '#deecf5',
     borderWidth: 2,
     borderColor: '#8bb6cf',
@@ -150,6 +213,6 @@ const styles = StyleSheet.create({
   buttonNavText: {
     fontSize: 18,
     color: '#7fabc6',
-    marginLeft: 10,          
+    marginLeft: 10,
   },
 });

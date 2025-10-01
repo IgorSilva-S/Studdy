@@ -39,14 +39,14 @@ router.post('/neue', async (req, res) => {
   }
 })
 
-router.get('/login', async (req, res) => {
+router.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body
     let user = await prisma.user.findUnique({ where: { email } })
     if (user && !user.isDeleted) {
       let okPassword = await comparePassword(password, user.password)
       if (!okPassword) {
-        return res.status(401).json({ messgae: 'email ou senha não encontrados' })
+        return res.status(401).json({ message: 'email ou senha não encontrados' })
       }
 
       const tkn = generateToken({ id: user.id, email: user.email, name: user.name})
@@ -55,7 +55,7 @@ router.get('/login', async (req, res) => {
 
       return res.status(200).json({ message: `Welcome User ${user.name}`, data: user, token: tkn})
     } else {
-      return res.status(401).json({ messgae: 'email ou senha não encontrados' })
+      return res.status(401).json({ message: 'email ou senha não encontrados' })
     }
   } catch (err) {
     res.status(400).json({ message: err })

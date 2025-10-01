@@ -68,7 +68,7 @@ export default function Perfil() {
       </View>
 
       <View style={styles.inputContainer}>
-        <Ionicons name="document" size={24} color="#7fabc6" />
+        <Ionicons name="key-outline" size={24} color="#7fabc6" />
         <TextInput placeholder="Senha:" placeholderTextColor="#7fabc6" secureTextEntry style={styles.input} onChangeText={(text) => handleChange('password', text)}
 
         />
